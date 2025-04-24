@@ -1,0 +1,12 @@
+{
+  "name": "photo-layout-app",
+  "version": "1.0.0",
+  "description": "A web application for arranging photos in A4 format",
+  "scripts": {
+    "start": "npx http-server ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

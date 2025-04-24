@@ -1,0 +1,220 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    -webkit-text-size-adjust: 100%; /* 防止 iOS 中文字自动调整大小 */
+    touch-action: manipulation; /* 优化触摸操作 */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+/* 工具栏样式 */
+.toolbar {
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 8px;
+    background: #f8f8f8;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.tool-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 2px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 14px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* 移除触摸高亮 */
+}
+
+.tool-btn:hover, .tool-btn:active {
+    background-color: #1976D2;
+}
+
+/* A4 预览区域 */
+.preview-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    overflow-x: hidden; /* 防止横向溢出 */
+}
+
+.a4 {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 10mm;
+    max-width: 100%; /* 确保不超出容器宽度 */
+}
+
+.content-container {
+    width: 100%;
+    min-height: 277mm; /* 297mm - 20mm padding */
+    outline: none;
+    position: relative;
+}
+
+.content-container:empty::before {
+    content: attr(data-placeholder);
+    color: #999;
+    font-style: italic;
+}
+
+.content-container img {
+    max-width: 100%; /* 修改为百分比宽度 */
+    height: auto; /* 保持图片纵横比 */
+    object-fit: contain;
+    margin: 5mm 0;
+    cursor: move;
+    display: block;
+}
+
+.content-container p {
+    margin: 5mm 0;
+    line-height: 1.5;
+    min-height: 1em;
+}
+
+.placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* 缩放控制 */
+.zoom-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.zoom-btn {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* 移动设备适配样式 */
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 5px;
+        padding: 5px;
+    }
+    
+    .toolbar {
+        padding: 5px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .tool-btn {
+        margin: 3px 0;
+        padding: 10px; /* 增大触摸区域 */
+        font-size: 16px; /* 增大字体以便触摸 */
+    }
+    
+    .a4 {
+        transform-origin: top center; /* 从顶部中心进行缩放 */
+        transform: scale(0.95); /* 稍微缩小以适应屏幕 */
+        width: 100%;
+        padding: 5mm; /* 减少内边距 */
+    }
+    
+    .content-container {
+        min-height: auto; /* 移动设备不需要固定高度 */
+    }
+}
+
+/* 小屏幕手机适配 */
+@media screen and (max-width: 480px) {
+    .a4 {
+        transform: scale(0.9);
+        padding: 3mm;
+    }
+    
+    .preview-container {
+        padding: 0;
+    }
+    
+    .tool-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
+/* 打印样式 */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        background: none;
+    }
+    
+    .container {
+        margin: 0;
+        padding: 0;
+        min-height: 0;
+    }
+
+    .toolbar, .zoom-controls {
+        display: none;
+    }
+
+    .preview-container {
+        padding: 0;
+    }
+
+    .a4 {
+        box-shadow: none;
+        width: 210mm;
+        min-height: 0;
+        height: auto;
+        margin: 0;
+        padding: 10mm;
+        transform: none !important; /* 确保打印时没有任何缩放 */
+    }
+
+    .content-container {
+        min-height: 0;
+        height: auto;
+    }
+
+    .content-container img {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .placeholder {
+        display: none;
+    }
+}

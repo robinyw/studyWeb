@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>照片排版打印系统</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="toolbar">
+            <input type="file" id="imageInput" accept="image/*" multiple capture="environment">
+            <label for="imageInput" class="tool-btn">选择图片</label>
+            <button class="tool-btn" id="addTextBtn">添加文字</button>
+            <button class="tool-btn" id="printBtn">打印</button>
+            <button class="tool-btn" id="savePdfBtn">保存 PDF</button>
+        </div>
+
+        <div class="zoom-controls">
+            <button class="zoom-btn" id="zoomOutBtn">缩小</button>
+            <span id="zoomLevel">100%</span>
+            <button class="zoom-btn" id="zoomInBtn">放大</button>
+            <button class="zoom-btn" id="resetZoomBtn">重置</button>
+        </div>
+
+        <div class="preview-container">
+            <div id="a4Page" class="a4">
+                <div id="contentContainer" class="content-container" contenteditable="true">
+                    <p class="placeholder">点击这里开始编辑，或粘贴内容...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
