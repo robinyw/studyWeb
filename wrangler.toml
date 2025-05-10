@@ -1,0 +1,7 @@
+name = "photo-layout-app"
+compatibility_date = "2024-05-10"
+
+[site]
+bucket = "."
+include = ["index.html", "style.css", "script.js"]
+exclude = ["node_modules/**/*", "worker.js", "package.json", "package-lock.json"]

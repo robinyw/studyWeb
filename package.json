@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A web application for arranging photos in A4 format",
   "scripts": {
-    "start": "npx http-server ."
+    "start": "npx http-server .",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
   },
   "dependencies": {},
   "devDependencies": {
